@@ -1,0 +1,922 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kisi-Kisi PJOK – Kecamatan Makasar</title>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Baloo+2:wght@700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --green: #1a9b5e;
+    --green-light: #e6f7ef;
+    --green-mid: #2ecc87;
+    --orange: #f97316;
+    --orange-light: #fff4ed;
+    --blue: #2563eb;
+    --blue-light: #eff6ff;
+    --purple: #7c3aed;
+    --purple-light: #f5f3ff;
+    --red: #dc2626;
+    --red-light: #fef2f2;
+    --yellow: #d97706;
+    --yellow-light: #fffbeb;
+    --dark: #1e293b;
+    --mid: #475569;
+    --light: #f8fafc;
+    --white: #ffffff;
+    --shadow: 0 4px 24px rgba(0,0,0,0.08);
+    --radius: 16px;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Nunito', sans-serif;
+    background: #f0faf5;
+    color: var(--dark);
+    min-height: 100vh;
+  }
+
+  /* HEADER */
+  header {
+    background: linear-gradient(135deg, #0f7a47 0%, #1a9b5e 50%, #2ecc87 100%);
+    padding: 40px 24px 60px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  header::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='30' cy='30' r='20' fill='none' stroke='rgba(255,255,255,0.07)' stroke-width='1'/%3E%3C/svg%3E") repeat;
+  }
+  .badge {
+    display: inline-block;
+    background: rgba(255,255,255,0.2);
+    color: #fff;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    padding: 6px 16px;
+    border-radius: 99px;
+    margin-bottom: 16px;
+    backdrop-filter: blur(4px);
+  }
+  header h1 {
+    font-family: 'Baloo 2', sans-serif;
+    font-size: clamp(28px, 6vw, 52px);
+    color: #fff;
+    line-height: 1.1;
+    text-shadow: 0 2px 8px rgba(0,0,0,0.15);
+  }
+  header p {
+    color: rgba(255,255,255,0.85);
+    font-size: 15px;
+    margin-top: 10px;
+    font-weight: 600;
+  }
+  .stats-bar {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin-top: 28px;
+  }
+  .stat-chip {
+    background: rgba(255,255,255,0.18);
+    backdrop-filter: blur(6px);
+    border: 1px solid rgba(255,255,255,0.3);
+    color: #fff;
+    border-radius: 99px;
+    padding: 8px 20px;
+    font-size: 13px;
+    font-weight: 700;
+  }
+
+  /* MAIN */
+  main { max-width: 900px; margin: -24px auto 48px; padding: 0 16px; position: relative; z-index: 1; }
+
+  /* SEARCH */
+  .search-wrap {
+    background: var(--white);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    padding: 16px 20px;
+    margin-bottom: 24px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .search-wrap input {
+    flex: 1;
+    border: none;
+    outline: none;
+    font-family: 'Nunito', sans-serif;
+    font-size: 15px;
+    color: var(--dark);
+  }
+  .search-wrap input::placeholder { color: #94a3b8; }
+  .search-icon { font-size: 20px; }
+
+  /* FILTER TABS */
+  .filter-tabs {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin-bottom: 24px;
+  }
+  .tab-btn {
+    padding: 8px 18px;
+    border: 2px solid #e2e8f0;
+    background: var(--white);
+    border-radius: 99px;
+    font-family: 'Nunito', sans-serif;
+    font-size: 13px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.2s;
+    color: var(--mid);
+  }
+  .tab-btn:hover { border-color: var(--green); color: var(--green); }
+  .tab-btn.active { background: var(--green); border-color: var(--green); color: #fff; }
+
+  /* CARDS */
+  .card {
+    background: var(--white);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    margin-bottom: 16px;
+    overflow: hidden;
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  .card:hover { transform: translateY(-2px); box-shadow: 0 8px 32px rgba(0,0,0,0.12); }
+
+  .card-header {
+    padding: 18px 22px 16px;
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+    cursor: pointer;
+    user-select: none;
+  }
+  .card-icon {
+    width: 48px; height: 48px; min-width: 48px;
+    border-radius: 12px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 22px;
+  }
+  .card-title-wrap { flex: 1; }
+  .card-number {
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-bottom: 4px;
+    opacity: 0.6;
+  }
+  .card-title {
+    font-size: 16px;
+    font-weight: 800;
+    line-height: 1.3;
+  }
+  .card-toggle {
+    font-size: 20px;
+    transition: transform 0.3s;
+    margin-top: 2px;
+    opacity: 0.5;
+  }
+  .card.open .card-toggle { transform: rotate(180deg); opacity: 1; }
+
+  .card-body {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease;
+  }
+  .card.open .card-body { max-height: 1000px; }
+  .card-content { padding: 0 22px 22px; }
+
+  .card-content p {
+    font-size: 14px;
+    line-height: 1.7;
+    color: var(--mid);
+    margin-bottom: 12px;
+  }
+
+  /* Tags */
+  .tag-row { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 10px; }
+  .tag {
+    padding: 4px 12px;
+    border-radius: 99px;
+    font-size: 12px;
+    font-weight: 700;
+  }
+
+  /* Step list */
+  .step-list { list-style: none; margin-top: 12px; }
+  .step-list li {
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+    padding: 8px 0;
+    border-bottom: 1px solid #f1f5f9;
+    font-size: 14px;
+    line-height: 1.5;
+    color: var(--mid);
+  }
+  .step-list li:last-child { border-bottom: none; }
+  .step-num {
+    min-width: 26px; height: 26px;
+    background: var(--green);
+    color: #fff;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 12px; font-weight: 800;
+    margin-top: 1px;
+  }
+
+  /* Definition table */
+  .def-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 12px; }
+  @media(max-width:500px) { .def-grid { grid-template-columns: 1fr; } }
+  .def-item {
+    background: var(--light);
+    border-radius: 10px;
+    padding: 10px 14px;
+  }
+  .def-term {
+    font-size: 12px;
+    font-weight: 800;
+    color: var(--green);
+    margin-bottom: 2px;
+  }
+  .def-desc { font-size: 13px; color: var(--mid); }
+
+  /* Org table */
+  .org-table { width: 100%; border-collapse: collapse; margin-top: 12px; font-size: 13px; }
+  .org-table th { background: var(--green); color: #fff; padding: 8px 12px; text-align: left; }
+  .org-table td { padding: 8px 12px; border-bottom: 1px solid #f1f5f9; color: var(--mid); }
+  .org-table tr:last-child td { border-bottom: none; }
+  .org-table tr:hover td { background: var(--green-light); }
+
+  /* Inline highlight */
+  .highlight {
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 6px;
+    font-weight: 700;
+  }
+
+  /* Color schemes per category */
+  .cat-senam .card-icon { background: #e0f2fe; }
+  .cat-renang .card-icon { background: #dbeafe; }
+  .cat-sepakbola .card-icon { background: #dcfce7; }
+  .cat-irama .card-icon { background: #fef3c7; }
+  .cat-kesehatan .card-icon { background: #fce7f3; }
+  .cat-organisasi .card-icon { background: #ede9fe; }
+  .cat-kasti .card-icon { background: #ffedd5; }
+
+  /* PROGRESS */
+  .progress-bar-wrap {
+    background: var(--white);
+    border-radius: var(--radius);
+    padding: 20px 22px;
+    box-shadow: var(--shadow);
+    margin-bottom: 24px;
+  }
+  .progress-label {
+    display: flex;
+    justify-content: space-between;
+    font-size: 13px;
+    font-weight: 700;
+    margin-bottom: 8px;
+    color: var(--mid);
+  }
+  .progress-track {
+    background: #e2e8f0;
+    border-radius: 99px;
+    height: 10px;
+    overflow: hidden;
+  }
+  .progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--green) 0%, var(--green-mid) 100%);
+    border-radius: 99px;
+    width: 0%;
+    transition: width 0.5s ease;
+  }
+
+  /* EMPTY */
+  .empty { text-align: center; padding: 48px 24px; color: #94a3b8; font-weight: 700; font-size: 15px; }
+
+  footer {
+    text-align: center;
+    padding: 24px;
+    font-size: 13px;
+    color: #94a3b8;
+    font-weight: 600;
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="badge">📚 Bahan Ujian Resmi</div>
+  <h1>Kisi-Kisi PJOK PSKA<br>Kelas 6</h1>
+  <p>Kecamatan Makasar · Tahun Pelajaran 2025–2026</p>
+  <div class="stats-bar">
+    <span class="stat-chip">🏃 18 Topik Ujian</span>
+    <span class="stat-chip">⚽ Olahraga & Kesehatan</span>
+    <span class="stat-chip">📋 Senam · Renang · Bola</span>
+  </div>
+</header>
+
+<main>
+
+  <!-- Progress -->
+  <div class="progress-bar-wrap">
+    <div class="progress-label">
+      <span>📖 Materi dipelajari</span>
+      <span id="progress-text">0 / 18 topik</span>
+    </div>
+    <div class="progress-track">
+      <div class="progress-fill" id="progress-fill"></div>
+    </div>
+  </div>
+
+  <!-- Search -->
+  <div class="search-wrap">
+    <span class="search-icon">🔍</span>
+    <input type="text" id="search-input" placeholder="Cari materi... (contoh: renang, senam, sepak bola)">
+  </div>
+
+  <!-- Filter Tabs -->
+  <div class="filter-tabs">
+    <button class="tab-btn active" data-cat="all">Semua</button>
+    <button class="tab-btn" data-cat="senam">🤸 Senam</button>
+    <button class="tab-btn" data-cat="irama">🎵 Senam Irama</button>
+    <button class="tab-btn" data-cat="renang">🏊 Renang</button>
+    <button class="tab-btn" data-cat="sepakbola">⚽ Sepak Bola</button>
+    <button class="tab-btn" data-cat="kesehatan">🏥 Kesehatan</button>
+    <button class="tab-btn" data-cat="organisasi">🏅 Organisasi</button>
+    <button class="tab-btn" data-cat="olahraga">🎯 Olahraga Lain</button>
+  </div>
+
+  <!-- CARDS -->
+  <div id="cards-container">
+
+    <!-- 1 -->
+    <div class="card cat-senam" data-cat="senam" data-id="1">
+      <div class="card-header" onclick="toggleCard(this)">
+        <div class="card-icon">🤸</div>
+        <div class="card-title-wrap">
+          <div class="card-number">Materi 1 · Senam Lantai</div>
+          <div class="card-title">Jenis-Jenis Gerakan Senam Lantai</div>
+        </div>
+        <span class="card-toggle">▼</span>
+      </div>
+      <div class="card-body">
+        <div class="card-content">
+          <p>Senam lantai adalah serangkaian gerakan tubuh yang dilakukan di atas matras tanpa alat. Gerakan ini melatih kelenturan, keseimbangan, dan kekuatan tubuh.</p>
+          <div class="tag-row">
+            <span class="tag" style="background:#e0f2fe;color:#0369a1">Roll Depan</span>
+            <span class="tag" style="background:#e0f2fe;color:#0369a1">Roll Belakang</span>
+            <span class="tag" style="background:#e0f2fe;color:#0369a1">Meroda</span>
+            <span class="tag" style="background:#e0f2fe;color:#0369a1">Kayang</span>
+            <span class="tag" style="background:#e0f2fe;color:#0369a1">Sikap Lilin</span>
+            <span class="tag" style="background:#e0f2fe;color:#0369a1">Lompat Harimau</span>
+            <span class="tag" style="background:#e0f2fe;color:#0369a1">Handstand</span>
+            <span class="tag" style="background:#e0f2fe;color:#0369a1">Headstand</span>
+          </div>
+          <p style="margin-top:14px"><strong>💡 Ingat:</strong> Setiap gerakan melatih bagian tubuh yang berbeda dan membutuhkan teknik yang benar untuk menghindari cedera.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- 2 -->
+    <div class="card cat-senam" data-cat="senam" data-id="2">
+      <div class="card-header" onclick="toggleCard(this)">
+        <div class="card-icon">🔄</div>
+        <div class="card-title-wrap">
+          <div class="card-number">Materi 2 · Senam Lantai</div>
+          <div class="card-title">Langkah-Langkah Gerakan Roll Depan</div>
+        </div>
+        <span class="card-toggle">▼</span>
+      </div>
+      <div class="card-body">
+        <div class="card-content">
+          <p>Roll depan adalah gerakan menggulingkan badan ke depan dengan bertumpu pada tengkuk dan punggung. Teknik yang benar sangat penting untuk keselamatan.</p>
+          <ul class="step-list">
+            <li><span class="step-num">1</span> Posisi jongkok menghadap ke matras. Kedua telapak tangan diletakkan di atas matras.</li>
+            <li><span class="step-num">2</span> Angkat pinggul ke atas hingga kedua kaki lurus.</li>
+            <li><span class="step-num">3</span> Masukkan kepala di antara kedua lengan hingga pundak menempel matras.</li>
+            <li><span class="step-num">4</span> Gulingkan badan ke depan — dari tengkuk, punggung, hingga pinggul menyentuh matras.</li>
+            <li><span class="step-num">5</span> Kembali bersikap jongkok, kedua tangan lurus dan pandangan ke depan.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- 3 -->
+    <div class="card cat-senam" data-cat="senam" data-id="3">
+      <div class="card-header" onclick="toggleCard(this)">
+        <div class="card-icon">🕯️</div>
+        <div class="card-title-wrap">
+          <div class="card-number">Materi 3 · Senam Lantai</div>
+          <div class="card-title">Sikap Lilin</div>
+        </div>
+        <span class="card-toggle">▼</span>
+      </div>
+      <div class="card-body">
+        <div class="card-content">
+          <p><strong>Sikap lilin</strong> adalah gerakan senam lantai di mana kedua kaki diangkat lurus ke atas sementara pinggul ditopang oleh kedua tangan.</p>
+          <p>Ciri khas: <span class="highlight" style="background:#dcfce7;color:#15803d">Kedua kaki di atas lurus + pinggul diangkat oleh kedua tangan</span></p>
+          <p>Manfaat: melatih kekuatan otot perut, punggung, dan keseimbangan tubuh.</p>
+          <div class="tag-row">
+            <span class="tag" style="background:#dcfce7;color:#166534">Kekuatan perut</span>
+            <span class="tag" style="background:#dcfce7;color:#166534">Keseimbangan</span>
+            <span class="tag" style="background:#dcfce7;color:#166534">Kekuatan punggung</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 4 -->
+    <div class="card cat-senam" data-cat="senam" data-id="4">
+      <div class="card-header" onclick="toggleCard(this)">
+        <div class="card-icon">🌉</div>
+        <div class="card-title-wrap">
+          <div class="card-number">Materi 4 · Senam Lantai</div>
+          <div class="card-title">Gerakan Kayang</div>
+        </div>
+        <span class="card-toggle">▼</span>
+      </div>
+      <div class="card-body">
+        <div class="card-content">
+          <p>Kayang adalah gerakan membentuk busur dengan tubuh — bertumpu pada tangan dan kaki, dengan punggung melengkung ke atas.</p>
+          <p>Tujuan utama: <span class="highlight" style="background:#fef3c7;color:#92400e">Melatih kelenturan / fleksibilitas tubuh</span>, terutama pada bagian punggung, bahu, dan pinggul.</p>
+          <p>Kayang juga melatih kekuatan otot lengan dan kaki sebagai tumpuan.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- 5 -->
+    <div class="card cat-irama" data-cat="irama" data-id="5">
+      <div class="card-header" onclick="toggleCard(this)">
+        <div class="card-icon">🎵</div>
+        <div class="card-title-wrap">
+          <div class="card-number">Materi 5 · Senam Irama</div>
+          <div class="card-title">Pengertian & Gerakan Senam Irama</div>
+        </div>
+        <span class="card-toggle">▼</span>
+      </div>
+      <div class="card-body">
+        <div class="card-content">
+          <p><strong>Senam irama</strong> adalah gerakan senam yang dilakukan dengan iringan musik, ketukan, atau hitungan sehingga gerakan berirama dan harmonis.</p>
+          <div class="def-grid">
+            <div class="def-item">
+              <div class="def-term">V Step</div>
+              <div class="def-desc">Langkah membentuk huruf V ke depan dan ke belakang</div>
+            </div>
+            <div class="def-item">
+              <div class="def-term">Single Step</div>
+              <div class="def-desc">Langkah tunggal satu kaki ke samping</div>
+            </div>
+            <div class="def-item">
+              <div class="def-term">Double Step</div>
+              <div class="def-desc">Langkah ganda dua kali ke samping</div>
+            </div>
+            <div class="def-item">
+              <div class="def-term">Kombinasi Langkah</div>
+              <div class="def-desc">Memadukan langkah kaki dan ayunan lengan</div>
+            </div>
+          </div>
+          <p style="margin-top:12px">Contoh kombinasi: <em>Variasi gerak menekuk dan mengangkat siku ke samping dengan kombinasi langkah kaki</em>, dan <em>Kombinasi gerak langkah biasa dengan ayunan dua lengan.</em></p>
+        </div>
+      </div>
+    </div>
+
+    <!-- 6 -->
+    <div class="card cat-renang" data-cat="renang" data-id="6">
+      <div class="card-header" onclick="toggleCard(this)">
+        <div class="card-icon">🏊</div>
+        <div class="card-title-wrap">
+          <div class="card-number">Materi 6 · Renang</div>
+          <div class="card-title">Macam-Macam Gaya Renang</div>
+        </div>
+        <span class="card-toggle">▼</span>
+      </div>
+      <div class="card-body">
+        <div class="card-content">
+          <p>Ada empat gaya renang resmi yang diakui secara internasional dan diajarkan di sekolah dasar:</p>
+          <div class="def-grid">
+            <div class="def-item">
+              <div class="def-term">🏃 Gaya Bebas</div>
+              <div class="def-desc">Gerakan tangan bergantian ke depan, kaki flutter kick</div>
+            </div>
+            <div class="def-item">
+              <div class="def-term">🐸 Gaya Dada</div>
+              <div class="def-desc">Seperti katak, tangan dorong ke depan, kaki frog kick</div>
+            </div>
+            <div class="def-item">
+              <div class="def-term">🦋 Gaya Kupu-Kupu</div>
+              <div class="def-desc">Kedua tangan bergerak bersamaan melewati air</div>
+            </div>
+            <div class="def-item">
+              <div class="def-term">🔄 Gaya Punggung</div>
+              <div class="def-desc">Posisi telentang, tangan bergantian ke belakang kepala</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 7 -->
+    <div class="card cat-renang" data-cat="renang" data-id="7">
+      <div class="card-header" onclick="toggleCard(this)">
+        <div class="card-icon">💨</div>
+        <div class="card-title-wrap">
+          <div class="card-number">Materi 7 · Renang</div>
+          <div class="card-title">Teknik Pengambilan Napas & Gerakan Meluncur</div>
+        </div>
+        <span class="card-toggle">▼</span>
+      </div>
+      <div class="card-body">
+        <div class="card-content">
+          <p><strong>Cara pengambilan napas yang benar:</strong></p>
+          <p style="background:#eff6ff;padding:12px 16px;border-radius:10px;border-left:4px solid #2563eb;">
+            <strong>Ambil napas dari mulut</strong> → buang melalui hidung sambil <strong>membuat gelembung</strong> di dalam air.
+          </p>
+          <p style="margin-top:12px"><strong>Gerakan Meluncur:</strong> Posisi awal berdiri di pinggir kolam, kemudian mendorong diri dengan kaki dan meluruskan tubuh sejajar dengan permukaan air. Ini adalah gerakan dasar sebelum berenang.</p>
+          <div class="tag-row">
+            <span class="tag" style="background:#dbeafe;color:#1e40af">Ambil napas dari mulut</span>
+            <span class="tag" style="background:#dbeafe;color:#1e40af">Buang dari hidung</span>
+            <span class="tag" style="background:#dbeafe;color:#1e40af">Buat gelembung</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 8 -->
+    <div class="card cat-sepakbola" data-cat="sepakbola" data-id="8">
+      <div class="card-header" onclick="toggleCard(this)">
+        <div class="card-icon">⚽</div>
+        <div class="card-title-wrap">
+          <div class="card-number">Materi 8 · Sepak Bola</div>
+          <div class="card-title">Teknik Dasar Sepak Bola</div>
+        </div>
+        <span class="card-toggle">▼</span>
+      </div>
+      <div class="card-body">
+        <div class="card-content">
+          <p>Sepak bola dimainkan oleh <span class="highlight" style="background:#dcfce7;color:#15803d">11 pemain</span> dalam satu tim. Berikut istilah teknik dasar sepak bola:</p>
+          <div class="def-grid">
+            <div class="def-item">
+              <div class="def-term">Dribbling</div>
+              <div class="def-desc">Menggiring bola dengan kaki</div>
+            </div>
+            <div class="def-item">
+              <div class="def-term">Shooting</div>
+              <div class="def-desc">Menembak bola ke gawang</div>
+            </div>
+            <div class="def-item">
+              <div class="def-term">Heading</div>
+              <div class="def-desc">Menyundul bola dengan kepala</div>
+            </div>
+            <div class="def-item">
+              <div class="def-term">Passing</div>
+              <div class="def-desc">Mengoper bola ke rekan tim</div>
+            </div>
+            <div class="def-item">
+              <div class="def-term">Tackle</div>
+              <div class="def-desc">Merebut bola dari lawan dengan kaki</div>
+            </div>
+            <div class="def-item">
+              <div class="def-term">Ball Control</div>
+              <div class="def-desc">Mengontrol / menghentikan bola</div>
+            </div>
+            <div class="def-item">
+              <div class="def-term">Goal Keeping</div>
+              <div class="def-desc">Tugas penjaga gawang</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 9 -->
+    <div class="card cat-olahraga" data-cat="olahraga" data-id="9">
+      <div class="card-header" onclick="toggleCard(this)">
+        <div class="card-icon">🏀</div>
+        <div class="card-title-wrap">
+          <div class="card-number">Materi 9 · Olahraga Tim</div>
+          <div class="card-title">Jumlah Pemain Bola Basket</div>
+        </div>
+        <span class="card-toggle">▼</span>
+      </div>
+      <div class="card-body">
+        <div class="card-content">
+          <p>Bola basket dimainkan oleh <span class="highlight" style="background:#fef3c7;color:#92400e">5 pemain</span> dalam satu tim di lapangan.</p>
+          <p>Perbandingan jumlah pemain:</p>
+          <div class="def-grid">
+            <div class="def-item">
+              <div class="def-term">⚽ Sepak Bola</div>
+              <div class="def-desc">11 pemain per tim</div>
+            </div>
+            <div class="def-item">
+              <div class="def-term">🏀 Bola Basket</div>
+              <div class="def-desc">5 pemain per tim</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 10 -->
+    <div class="card cat-kesehatan" data-cat="kesehatan" data-id="10">
+      <div class="card-header" onclick="toggleCard(this)">
+        <div class="card-icon">🏥</div>
+        <div class="card-title-wrap">
+          <div class="card-number">Materi 10 · Kesehatan</div>
+          <div class="card-title">Uretritis – Infeksi Saluran Kemih</div>
+        </div>
+        <span class="card-toggle">▼</span>
+      </div>
+      <div class="card-body">
+        <div class="card-content">
+          <p><strong>Uretritis</strong> adalah penyakit di mana seseorang mengalami <span class="highlight" style="background:#fce7f3;color:#9d174d">infeksi peradangan pada bagian uretra</span> (saluran yang membawa urin keluar dari tubuh).</p>
+          <p>Uretra adalah bagian dari sistem reproduksi sekaligus sistem kemih. Infeksi ini bisa disebabkan oleh bakteri dan harus ditangani oleh dokter.</p>
+          <div class="tag-row">
+            <span class="tag" style="background:#fce7f3;color:#9d174d">Penyakit menular</span>
+            <span class="tag" style="background:#fce7f3;color:#9d174d">Infeksi uretra</span>
+            <span class="tag" style="background:#fce7f3;color:#9d174d">Sistem kemih</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 11 -->
+    <div class="card cat-organisasi" data-cat="organisasi" data-id="11">
+      <div class="card-header" onclick="toggleCard(this)">
+        <div class="card-icon">🏅</div>
+        <div class="card-title-wrap">
+          <div class="card-number">Materi 11 · Organisasi Olahraga</div>
+          <div class="card-title">Induk Organisasi Olahraga Indonesia</div>
+        </div>
+        <span class="card-toggle">▼</span>
+      </div>
+      <div class="card-body">
+        <div class="card-content">
+          <p>Setiap cabang olahraga di Indonesia memiliki induk organisasi yang mengatur kegiatan dan kompetisi resmi:</p>
+          <table class="org-table">
+            <tr><th>Singkatan</th><th>Kepanjangan</th><th>Cabang Olahraga</th></tr>
+            <tr><td>IPSI</td><td>Ikatan Pencak Silat Indonesia</td><td>Pencak Silat</td></tr>
+            <tr><td>PASI</td><td>Persatuan Atletik Seluruh Indonesia</td><td>Atletik</td></tr>
+            <tr><td>PBVSI</td><td>Persatuan Bola Voli Seluruh Indonesia</td><td>Bola Voli</td></tr>
+            <tr><td>PSSI</td><td>Persatuan Sepak Bola Seluruh Indonesia</td><td>Sepak Bola</td></tr>
+            <tr><td>PERBASI</td><td>Persatuan Bola Basket Seluruh Indonesia</td><td>Bola Basket</td></tr>
+            <tr><td>PSTI</td><td>Persatuan Sepak Takraw Indonesia</td><td>Sepak Takraw</td></tr>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- 12 -->
+    <div class="card cat-olahraga" data-cat="olahraga" data-id="12">
+      <div class="card-header" onclick="toggleCard(this)">
+        <div class="card-icon">🏏</div>
+        <div class="card-title-wrap">
+          <div class="card-number">Materi 12 · Permainan Tradisional</div>
+          <div class="card-title">Cara Bermain Kasti & Mendapat Poin</div>
+        </div>
+        <span class="card-toggle">▼</span>
+      </div>
+      <div class="card-body">
+        <div class="card-content">
+          <p>Kasti adalah permainan beregu tradisional Indonesia yang mirip dengan baseball. Cara mendapatkan poin:</p>
+          <p style="background:#fff7ed;padding:12px 16px;border-radius:10px;border-left:4px solid #f97316;">
+            Regu pemukul harus <strong>memukul bola</strong> yang dilempar oleh regu penjaga, kemudian <strong>berlari melewati beberapa base</strong> hingga kembali ke <strong>base awal</strong>.
+          </p>
+          <div class="tag-row">
+            <span class="tag" style="background:#ffedd5;color:#c2410c">Regu Pemukul</span>
+            <span class="tag" style="background:#ffedd5;color:#c2410c">Regu Penjaga</span>
+            <span class="tag" style="background:#ffedd5;color:#c2410c">Base</span>
+            <span class="tag" style="background:#ffedd5;color:#c2410c">Permainan Tradisional</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Tip cards for extra study -->
+    <div class="card" data-cat="senam" data-id="13" style="border-left: 5px solid var(--green);">
+      <div class="card-header" onclick="toggleCard(this)">
+        <div class="card-icon" style="background:#e0f2fe;">✍️</div>
+        <div class="card-title-wrap">
+          <div class="card-number" style="color:var(--green)">Ringkasan Cepat · Tips Belajar</div>
+          <div class="card-title">Perbedaan Handstand vs Headstand</div>
+        </div>
+        <span class="card-toggle">▼</span>
+      </div>
+      <div class="card-body">
+        <div class="card-content">
+          <div class="def-grid">
+            <div class="def-item">
+              <div class="def-term">🤲 Handstand</div>
+              <div class="def-desc">Bertumpu pada <strong>dua tangan</strong>, tubuh tegak lurus ke atas. Tumpuan = telapak tangan.</div>
+            </div>
+            <div class="def-item">
+              <div class="def-term">🗣️ Headstand</div>
+              <div class="def-desc">Bertumpu pada <strong>kepala</strong> (ubun-ubun) dan dua tangan. Tumpuan = kepala + tangan.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card" data-cat="irama" data-id="14" style="border-left: 5px solid #d97706;">
+      <div class="card-header" onclick="toggleCard(this)">
+        <div class="card-icon" style="background:#fef3c7;">🎯</div>
+        <div class="card-title-wrap">
+          <div class="card-number" style="color:#d97706">Ringkasan Cepat · Tips Belajar</div>
+          <div class="card-title">Ciri Khas Senam Irama</div>
+        </div>
+        <span class="card-toggle">▼</span>
+      </div>
+      <div class="card-body">
+        <div class="card-content">
+          <p>Yang membedakan senam irama dari senam biasa:</p>
+          <ul class="step-list">
+            <li><span class="step-num" style="background:#d97706">✓</span> Gerakan dilakukan mengikuti iringan <strong>musik/ketukan/hitungan</strong></li>
+            <li><span class="step-num" style="background:#d97706">✓</span> Memadukan <strong>langkah kaki</strong> dengan <strong>ayunan lengan</strong></li>
+            <li><span class="step-num" style="background:#d97706">✓</span> Mengutamakan <strong>keindahan</strong> dan <strong>keserasian gerak</strong></li>
+            <li><span class="step-num" style="background:#d97706">✓</span> Gerakan bisa dilakukan secara <strong>individu maupun kelompok</strong></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="card" data-cat="renang" data-id="15" style="border-left: 5px solid #2563eb;">
+      <div class="card-header" onclick="toggleCard(this)">
+        <div class="card-icon" style="background:#dbeafe;">🌊</div>
+        <div class="card-title-wrap">
+          <div class="card-number" style="color:#2563eb">Ringkasan Cepat · Tips Belajar</div>
+          <div class="card-title">Urutan Belajar Renang yang Benar</div>
+        </div>
+        <span class="card-toggle">▼</span>
+      </div>
+      <div class="card-body">
+        <div class="card-content">
+          <ul class="step-list">
+            <li><span class="step-num" style="background:#2563eb">1</span> Belajar <strong>bernapas</strong> (ambil dari mulut, buang dari hidung dengan gelembung)</li>
+            <li><span class="step-num" style="background:#2563eb">2</span> Belajar <strong>meluncur</strong> (dorong dari dinding kolam)</li>
+            <li><span class="step-num" style="background:#2563eb">3</span> Belajar gerakan <strong>kaki</strong> (flutter kick / frog kick)</li>
+            <li><span class="step-num" style="background:#2563eb">4</span> Belajar gerakan <strong>tangan</strong></li>
+            <li><span class="step-num" style="background:#2563eb">5</span> Gabungkan semua menjadi <strong>gaya renang</strong> lengkap</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="card" data-cat="kesehatan" data-id="16" style="border-left: 5px solid #dc2626;">
+      <div class="card-header" onclick="toggleCard(this)">
+        <div class="card-icon" style="background:#fce7f3;">💊</div>
+        <div class="card-title-wrap">
+          <div class="card-number" style="color:#dc2626">Ringkasan Cepat · Kesehatan</div>
+          <div class="card-title">Istilah Penyakit dalam PJOK</div>
+        </div>
+        <span class="card-toggle">▼</span>
+      </div>
+      <div class="card-body">
+        <div class="card-content">
+          <div class="def-grid">
+            <div class="def-item">
+              <div class="def-term">Uretritis</div>
+              <div class="def-desc">Peradangan/infeksi pada uretra (saluran kemih)</div>
+            </div>
+            <div class="def-item">
+              <div class="def-term">Uretra</div>
+              <div class="def-desc">Saluran yang membawa urin dari kandung kemih keluar</div>
+            </div>
+          </div>
+          <p style="margin-top:12px;font-size:13px;color:#94a3b8;">Penyakit ini termasuk kategori penyakit menular yang berhubungan dengan kebersihan organ reproduksi.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="card" data-cat="sepakbola" data-id="17" style="border-left: 5px solid var(--green);">
+      <div class="card-header" onclick="toggleCard(this)">
+        <div class="card-icon" style="background:#dcfce7;">🎯</div>
+        <div class="card-title-wrap">
+          <div class="card-number" style="color:var(--green)">Ringkasan Cepat · Sepak Bola</div>
+          <div class="card-title">Posisi Pemain dalam Sepak Bola</div>
+        </div>
+        <span class="card-toggle">▼</span>
+      </div>
+      <div class="card-body">
+        <div class="card-content">
+          <p>Dari 11 pemain, terdapat pembagian posisi:</p>
+          <div class="def-grid">
+            <div class="def-item"><div class="def-term">Goal Keeper (GK)</div><div class="def-desc">Penjaga gawang, mencegah gol masuk</div></div>
+            <div class="def-item"><div class="def-term">Defender (Bek)</div><div class="def-desc">Pemain belakang, menjaga pertahanan</div></div>
+            <div class="def-item"><div class="def-term">Midfielder (Gelandang)</div><div class="def-desc">Pemain tengah, menghubungkan bek dan penyerang</div></div>
+            <div class="def-item"><div class="def-term">Forward (Penyerang)</div><div class="def-desc">Pemain depan, bertugas mencetak gol</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card" data-cat="organisasi" data-id="18" style="border-left: 5px solid #7c3aed;">
+      <div class="card-header" onclick="toggleCard(this)">
+        <div class="card-icon" style="background:#ede9fe;">🔤</div>
+        <div class="card-title-wrap">
+          <div class="card-number" style="color:#7c3aed">Tips Hafalan · Organisasi</div>
+          <div class="card-title">Cara Mudah Hafal Singkatan Organisasi</div>
+        </div>
+        <span class="card-toggle">▼</span>
+      </div>
+      <div class="card-body">
+        <div class="card-content">
+          <p>Gunakan pola ini untuk menghafal:</p>
+          <ul class="step-list">
+            <li><span class="step-num" style="background:#7c3aed">💡</span><div><strong>IPSI</strong> – <em>I</em>katan = hanya Pencak Silat yang pakai kata "Ikatan"</div></li>
+            <li><span class="step-num" style="background:#7c3aed">💡</span><div><strong>PASI</strong> – <em>A</em>tletik = PASI = Persatuan <u>A</u>tletik <u>S</u>eluruh <u>I</u>ndonesia</div></li>
+            <li><span class="step-num" style="background:#7c3aed">💡</span><div><strong>PBVSI</strong> – <em>V</em>oli = huruf V untuk Voli, B untuk Bola</div></li>
+            <li><span class="step-num" style="background:#7c3aed">💡</span><div><strong>PSSI</strong> – Sepak bola = PSSI paling terkenal di Indonesia</div></li>
+            <li><span class="step-num" style="background:#7c3aed">💡</span><div><strong>PERBASI</strong> – Bola Basket = <u>PER</u>satuan <u>BA</u>sket <u>SI</u>ndonesia, kata paling panjang</div></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- end cards -->
+
+  <div class="empty" id="empty-msg" style="display:none">
+    😅 Tidak ada materi yang cocok. Coba kata kunci lain!
+  </div>
+
+</main>
+
+<footer>Kisi-Kisi PJOK PSKA Kelas 6 · Kecamatan Makasar · TP 2025–2026</footer>
+
+<script>
+  const cards = document.querySelectorAll('.card[data-id]');
+  const searchInput = document.getElementById('search-input');
+  const tabBtns = document.querySelectorAll('.tab-btn');
+  const emptyMsg = document.getElementById('empty-msg');
+  let activeFilter = 'all';
+  const read = new Set();
+
+  function toggleCard(header) {
+    const card = header.closest('.card');
+    const wasOpen = card.classList.contains('open');
+    card.classList.toggle('open', !wasOpen);
+    if (!wasOpen) {
+      read.add(card.dataset.id);
+      updateProgress();
+    }
+  }
+
+  function updateProgress() {
+    const total = cards.length;
+    const done = read.size;
+    document.getElementById('progress-text').textContent = `${done} / ${total} topik`;
+    document.getElementById('progress-fill').style.width = (done / total * 100) + '%';
+  }
+
+  function filterCards() {
+    const q = searchInput.value.toLowerCase();
+    let visible = 0;
+    cards.forEach(c => {
+      const text = c.textContent.toLowerCase();
+      const catMatch = activeFilter === 'all' || c.dataset.cat === activeFilter;
+      const textMatch = !q || text.includes(q);
+      const show = catMatch && textMatch;
+      c.style.display = show ? '' : 'none';
+      if (show) visible++;
+    });
+    emptyMsg.style.display = visible === 0 ? 'block' : 'none';
+  }
+
+  tabBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      tabBtns.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      activeFilter = btn.dataset.cat;
+      filterCards();
+    });
+  });
+
+  searchInput.addEventListener('input', filterCards);
+
+  // Animate cards on load
+  cards.forEach((c, i) => {
+    c.style.opacity = '0';
+    c.style.transform = 'translateY(16px)';
+    setTimeout(() => {
+      c.style.transition = 'opacity 0.4s ease, transform 0.4s ease';
+      c.style.opacity = '1';
+      c.style.transform = 'translateY(0)';
+    }, 80 + i * 40);
+  });
+</script>
+</body>
+</html>
